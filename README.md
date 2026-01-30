@@ -4,8 +4,8 @@ Perform steganography by fine-tuning pre-trained LLMs to hide secret bits in tok
 
 Architecture:
 - Any causal LM as a generation base (Tested with SmolLM2 135M)
-- A learned projection of secret bits onto token probabilities
-- A decoder MLP network to retrieve secret bits
+- A learned vocabulary mask that masks token probabilities based on secret bits
+- A decoder to retrieve secret bits
 
 ### Training
 
@@ -18,5 +18,5 @@ Installation with Conda is recommended. Tested with Python `3.12`. Run the follo
 ```
 conda create -n stega python=3.12
 conda activate stega
-conda install ipykernel pytorch pytorch-cuda nltk datasets transformers[torch] tokenizers evaluate sentencepiece huggingface_hub -c nvidia -c pytorch
+conda install ipykernel pytorch pytorch-cuda nltk datasets transformers[torch] tokenizers huggingface_hub pandas matplotlib -c nvidia -c pytorch
 ```
