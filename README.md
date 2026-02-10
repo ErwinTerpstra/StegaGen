@@ -25,6 +25,36 @@ Training graphs for secret recovery loss ($l_{rec}$) and semantic loss ($l_{sem}
 ![Semantic loss](results/l_sem.png)
 
 
+### Example
+
+The trained model can be used with the `encode()` and `decode()` APIs. Below is an end-to-end example:
+```python
+# Generate and decode stega text
+carrier = 'Write a two-line poem about neural networks.'
+secret = generate_secret()
+
+stego_text = encode(carrier, secret)
+recovered_secret = decode(stego_text)
+
+print('Prompt:           ', carrier)
+
+print('Stego text:       ', stego_text)
+print()
+print('Original secret:  ', bits_to_str(secret[0]))
+print('Recovered secret: ', bits_to_str(recovered_secret))
+print(f'Accuracy:          {100 * calculate_accuracy(recovered_secret, secret):.2f}%')
+```
+
+Output:
+```
+Prompt:            Write a two-line poem about neural networks.
+Stego text:        In the maze where wisdom is tangled through neural wires, Each spark leads to a new path, A world of patterns where logic and light meet.
+
+Original secret:   0011111110011011
+Recovered secret:  0011111110011011
+Accuracy:          100.00%
+```
+
 ### Requirements
 
 Installation with Conda is recommended. Tested with Python `3.12`. Run the following to create the environment:
